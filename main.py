@@ -41,7 +41,7 @@ op_timer2 = machine.Timer()
 def close_lid(_):
     global operation_status
     operation_status["is_lid_open"] = False
-    servo.move(0)
+    lid_servo.move(0)
 
 def operate_lid(_):
     global operation_status
@@ -50,7 +50,7 @@ def operate_lid(_):
     dist = ultrasen_1.get_reading()
     if operation_status["is_lid_open"] == False:
         if dist <= THRESHOLD_DISTANCE:
-            servo.move(90)
+            lid_servo.move(90)
             operation_status["is_lid_open"] = True
             operation_status["last_opened_time"] = time.time()
     if operation_status["is_lid_open"] == True:
